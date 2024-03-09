@@ -27,7 +27,7 @@ echo "<br>Difference in expenses between last month and this month: $expenses_di
 // Создание переменной и присвоение значений
 $num_languages = 4; // количество языков программирования, Мэг к сожалению конкуренция в проге среди девушек очень высока, может в гуманитарий(не осуждаем)?...
 $months = 11; // количество месяцев обучения проведенное в академе, ибо учись она в универе выучилась бы гораздо быстрее)
-$days_per_month = 16; // количество дней в месяце, когда Мэг действительно училась, вот что значит лень, а у кого-то от силы один день выходной, у кого же....)))
+$days_per_month = 16; // количество дней в месяце, когда Мэг действительно училась, а у кого-то от силы один день выходной, у кого же....)))
 
 // Вычисление общего количества дней, и то если Мэг не соврала...
 $days = $months * $days_per_month;
@@ -163,4 +163,122 @@ echo "<br>";
 $my_num = printStringReturnNumber("Hello, I'm Denis!"); // Вызываем функцию и записываем возвращаемое значение в переменную $my_num
 
 echo "<br>Returned number: $my_num<br>";
+echo "<br>Функции:<br>";
+
+// Функция increaseEnthusiasm()
+function increaseEnthusiasm($string) {
+    return $string . "!";
+}
+
+// Функция repeatThreeTimes()
+function repeatThreeTimes($string) {
+    return $string . $string . $string;
+}
+
+// Функция cut
+function cut($string, $length = 10) {
+    return substr($string, 0, $length);
+}
+
+// Вызов функции increaseEnthusiasm() с произвольной строкой моего имени
+$result1 = increaseEnthusiasm("Denis");
+echo "Результат increaseEnthusiasm(): $result1<br>";
+
+// Вызов функции repeatThreeTimes() с произвольной строкой
+$result2 = repeatThreeTimes("World");
+echo "Результат repeatThreeTimes(): $result2<br>";
+
+// Вызов функции increaseEnthusiasm() с результатом вызова repeatThreeTimes()
+$result3 = increaseEnthusiasm(repeatThreeTimes("Test"));
+echo "Результат вызова функции increaseEnthusiasm() с результатом вызова repeatThreeTimes(): $result3<br>";
+
+// Функция для суммирования цифр числа, честно не понял, правильно ли я делаю, могу исправить, но я художник я так вижу
+function sumDigits($number) {
+    $sum = 0;
+    while ($number > 0 || $sum > 9) {
+        if ($number == 0) {
+            $number = $sum;
+            $sum = 0;
+        }
+        $sum += $number % 10;
+        $number = (int)($number / 10);
+    }
+    return $sum;
+}
+
+// Пример использования функции sumDigits()
+$myvelocityfrombus = 987654321;
+echo "Сумма цифр числа $myvelocityfrombus: " . sumDigits($myvelocityfrombus) . "<br>";
+echo "<br>Массивы:<br>";
+
+// Заполнение массива 'x', 'xx', 'xxx', ...
+$array = [];
+for ($i = 1; $i <= 5; $i++) {
+    $array[] = str_repeat('x', $i);
+}
+echo "Заполненный массив: " . json_encode($array) . "<br>";
+
+// Функция arrayFill
+function arrayFill($value, $count) {
+    $result = [];
+    for ($i = 0; $i < $count; $i++) {
+        $result[] = $value;
+    }
+    return $result;
+}
+
+// Пример использования функции arrayFill
+$newArray = arrayFill('x', 5);
+echo "Результат вызова функции arrayFill(): " . json_encode($newArray) . "<br>";
+
+// Двумерный массив с числами
+$numbersArray = [[1, 2, 3], [4, 5], [6]];
+$sum = 0;
+foreach ($numbersArray as $subArray) {
+    $sum += array_sum($subArray);
+}
+echo "Сумма элементов двумерного массива: $sum<br>";
+
+// Создание массива [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+$newArray = [];
+$count = 1;
+for ($i = 0; $i < 3; $i++) {
+    $subArray = [];
+    for ($j = 0; $j < 3; $j++) {
+        $subArray[] = $count++;
+    }
+    $newArray[] = $subArray;
+}
+echo "Созданный массив: " . json_encode($newArray) . "<br>";
+
+// Умножение элементов массива и сложение результатов
+$userArray = [2, 5, 3, 9];
+$result = ($userArray[0] * $userArray[1]) + ($userArray[2] * $userArray[3]);
+echo "Результат умножения и сложения: $result<br>";
+
+// Создание массива $Denis и вывод фамилии, имени и отчества
+$Denis = [
+    'name' => 'Denis',
+    'surname' => 'Novikov',
+    'patronymic' => 'Mikhailovich'
+];
+echo "Фамилия, имя и отчество: " . $Denis['surname'] . " " . $Denis['name'] . " " . $Denis['patronymic'] . "<br>";
+
+// Создание массива $date и вывод даты в формате год-месяц-день
+$date = [
+    'year' => date('08'), //вряд ли я успею доделать это сегодня, поэтому, как говорится лучше поздно, чем никогда, поздравляю вас с 8 марта!
+    'month' => date('03'),
+    'day' => date('2024')
+];
+echo "Текущая дата: " . $date['year'] . "-" . $date['month'] . "-" . $date['day'] . "<br>";
+
+// Подсчет количества элементов в массиве
+$arr = ['a', 'b', 'c', 'd', 'e'];
+echo "Количество элементов в массиве \$arr: " . count($arr) . "<br>";
+
+// Вывод последнего и предпоследнего элементов массива
+echo "Последний элемент массива \$arr: " . end($arr) . "<br>";
+prev($arr);
+echo "Предпоследний элемент массива \$arr: " . current($arr) . "<br>";
+
 
