@@ -36,4 +36,23 @@ $days = $months * $days_per_month;
 $days_per_language = $days / $num_languages;
 
 // Вывод грустного результата
-echo "Average days spent learning each language: $days_per_language";
+echo "Average days spent learning each language: $days_per_language<br>";
+// степень
+echo 8 ** 2; // а я хотел в кубе(((
+echo "<br>"; // эт я чтоб в браузере было по царски)
+// Создаем переменную и присваиваем ей любое число
+$my_num = 10;
+
+// Создаем вторую переменную и присваиваем ей значение первой переменной
+$answer = $my_num;
+
+// Используем операторы присваивания для изменения значения $answer
+$answer += 2; // добавляем 2
+$answer *= 2; // умножаем на 2
+$answer -= 2; // вычитаем 2
+$answer /= 2; // делим на 2
+$answer -= $my_num; // вычитаем исходное число
+
+// Выводим результат
+echo $answer;
+echo "<br>";
