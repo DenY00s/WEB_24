@@ -1,5 +1,5 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST['email'];
     $category = $_POST['category'];
     $title = $_POST['title'];
@@ -10,19 +10,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Пожалуйста, заполните все поля.");
     }
 
-    // Создание категорий, если они не существуют
-    if (!file_exists($category)) {
-        mkdir($category);
+    $folder_path = "catigories/$category";
+    if (!file_exists($folder_path)) {
+        die("Категория \"$category\" не существует.");
     }
 
-    $file = "$category/$title.txt";
+    $file_path = "$folder_path/$title.txt";
     $data = "$email\n$text";
 
     // Запись информации в файл
-    file_put_contents($file, $data);
+    if (false === file_put_contents($file_path, $data)) {
+        die("Не удалось добавить объявление.");
+    }
 
     echo "Объявление успешно добавлено.";
 } else {
-    echo "Ошибка: Недопустимый метод запроса.";
+    die("Ошибка: Недопустимый метод запроса.");
 }
 ?>

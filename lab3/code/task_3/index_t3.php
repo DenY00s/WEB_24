@@ -26,5 +26,36 @@
 
     <input type="submit" value="Добавить">
 </form>
+
+<br><br>
+<table border="1">
+    <tr>
+        <th>Email</th>
+        <th>Категория</th>
+        <th>Заголовок</th>
+        <th>Текст объявления</th>
+    </tr>
+    <?php
+    // Чтение и отображение объявлений из файлов
+    $categories = array("cars", "homes", "others");
+    foreach ($categories as $category) {
+        $folder_path = "catigories/$category/";
+        if (is_dir($folder_path)) {
+            $files = scandir($folder_path);
+            foreach ($files as $file) {
+                if ($file !== '.' && $file !== '..' && is_file($folder_path . $file)) {
+                    $data = file("$folder_path$file");
+                    echo "<tr>";
+                    echo "<td>$data[0]</td>";       // Email
+                    echo "<td>$category</td>";      // Категория
+                    echo "<td>$file</td>";          // Заголовок
+                    echo "<td>$data[1]</td>";       // Текст объявления
+                    echo "</tr>";
+                }
+            }
+        }
+    }
+    ?>
+</table>
 </body>
 </html>
