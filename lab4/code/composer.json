@@ -1,0 +1,12 @@
+{
+    "name": "denis/code",
+    "authors": [
+        {
+            "name": "DenY00s",
+            "email": "noviko8d@mail.ru"
+        }
+    ],
+    "require": {
+        "google/apiclient": "2.15.0"
+    }
+}
